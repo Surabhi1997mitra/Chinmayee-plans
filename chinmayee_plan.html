@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#1a1a1a">
+<title>Chinmayee — Diet & Workout Plan</title>
+<style>
+:root {
+  --serif: 'Georgia', 'Times New Roman', serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --ink: #1a1a1a; --ink-mid: #444; --ink-soft: #888;
+  --paper: #faf8f4; --warm: #f2ede4;
+  --accent: #d4553c; --accent-soft: #fdf0ee;
+  --teal: #1a6b5a; --teal-soft: #e6f4f1;
+  --amber-soft: #fdf4e3; --amber: #c17f24;
+  --border: #e2dcd3;
+  --info: #1d56c4; --info-soft: #eef3fd;
+  --nav: 60px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;background:var(--paper)}
+body{font-family:var(--sans);color:var(--ink);font-size:15px;line-height:1.7;padding-bottom:calc(var(--nav) + 12px)}
+
+/* BOTTOM NAV */
+.bnav{position:fixed;bottom:0;left:0;right:0;height:var(--nav);background:#111;display:flex;z-index:999;border-top:1px solid rgba(255,255,255,0.07);box-shadow:0 -4px 20px rgba(0,0,0,0.3)}
+.bnav a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-decoration:none;color:rgba(255,255,255,0.38);font-size:9px;letter-spacing:0.06em;text-transform:uppercase;font-family:var(--sans);transition:color 0.15s;padding-bottom:env(safe-area-inset-bottom,0px)}
+.bnav-icon{font-size:18px;line-height:1}
+
+/* COVER */
+#cover{background:var(--ink);color:#fff;padding:52px 22px 52px;position:relative;overflow:hidden}
+#cover::before{content:'';position:absolute;top:-60px;right:-60px;width:260px;height:260px;border-radius:50%;border:1px solid rgba(255,255,255,0.05);pointer-events:none}
+#cover::after{content:'';position:absolute;bottom:-40px;left:20%;width:180px;height:180px;border-radius:50%;border:1px solid rgba(255,255,255,0.03);pointer-events:none}
+.cover-eyebrow{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:18px}
+.cover-name{font-family:var(--serif);font-size:52px;line-height:1.0;margin-bottom:14px;font-weight:400}
+.cover-name em{color:var(--accent);font-style:italic}
+.cover-sub{font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7;margin-bottom:28px;max-width:300px}
+.cover-pills{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:28px}
+.cpill{font-size:11px;padding:4px 11px;border-radius:20px;border:1px solid rgba(255,255,255,0.14);color:rgba(255,255,255,0.55)}
+.cover-coach{font-family:var(--serif);font-size:18px;font-style:italic;color:rgba(255,255,255,0.5)}
+.cover-role{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.22);margin-top:3px}
+
+/* SECTION STRUCTURE */
+.sec-anchor{display:block}
+.ph{padding:28px 20px 16px;border-bottom:1px solid var(--border);background:var(--paper)}
+.ph-eye{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.ph-title{font-family:var(--serif);font-size:28px;font-weight:400;line-height:1.15;color:var(--ink)}
+.cx{padding:18px 16px}
+
+/* CARDS */
+.card{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:12px}
+.card.hi{border-color:var(--accent);border-width:2px}
+.card.hi-teal{border-color:var(--teal);border-width:2px}
+.ch{padding:13px 15px;background:var(--warm);border-bottom:1px solid var(--border)}
+.ch.acc{background:var(--accent-soft)}
+.ch.teal{background:var(--teal-soft)}
+.ch.info{background:var(--info-soft)}
+.ch.amber{background:var(--amber-soft)}
+.ch.dark{background:#1a1a1a}
+.ct{font-weight:500;font-size:14px;line-height:1.4}
+.ch.acc .ct{color:var(--accent)}
+.ch.teal .ct{color:var(--teal)}
+.ch.info .ct{color:var(--info)}
+.ch.amber .ct{color:var(--amber)}
+.ch.dark .ct{color:#fff}
+.cm{font-size:11px;color:var(--ink-soft);margin-top:3px}
+.ch.dark .cm{color:rgba(255,255,255,0.4)}
+.cb{padding:13px 15px;font-size:13.5px;color:var(--ink-mid);line-height:1.8}
+
+/* ALERTS */
+.al{border-radius:10px;padding:12px 14px;margin-bottom:11px;font-size:13.5px;line-height:1.7}
+.al.d{background:var(--accent-soft);border-left:3px solid var(--accent);color:#7a1a14}
+.al.w{background:var(--amber-soft);border-left:3px solid var(--amber);color:#5a3a0a}
+.al.ok{background:var(--teal-soft);border-left:3px solid var(--teal);color:#0d3d30}
+.al.i{background:var(--info-soft);border-left:3px solid var(--info);color:#1a3a8a}
+.al b,.al strong{font-weight:600}
+
+/* NOTES */
+.nt{border-radius:8px;padding:9px 11px;margin-top:10px;font-size:12.5px;line-height:1.65}
+.nt.d{background:var(--accent-soft);color:#7a1a14}
+.nt.w{background:var(--amber-soft);color:#5a3a0a}
+.nt.ok{background:var(--teal-soft);color:#0d3d30}
+.nt.i{background:var(--info-soft);color:#1a3a8a}
+
+/* BADGES */
+.bx{display:inline-block;font-size:9.5px;font-weight:600;padding:2px 7px;border-radius:20px;margin-left:4px;vertical-align:middle}
+.bx.d{background:var(--accent);color:#fff}
+.bx.ok{background:var(--teal);color:#fff}
+.bx.i{background:var(--info);color:#fff}
+.bx.w{background:var(--amber);color:#fff}
+.bx.new{background:#1a1a1a;color:#fff}
+
+/* STATS GRID */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:14px}
+.stats.three{grid-template-columns:1fr 1fr 1fr}
+.st{background:var(--paper);padding:14px 12px}
+.stl{font-size:10px;color:var(--ink-soft);letter-spacing:0.03em;margin-bottom:3px}
+.stv{font-family:var(--serif);font-size:21px;color:var(--ink);line-height:1}
+.stu{font-size:10px;color:var(--ink-soft);margin-top:2px}
+.st.acc{background:var(--accent-soft)}.st.acc .stv{color:var(--accent)}
+.st.tl{background:var(--teal-soft)}.st.tl .stv{color:var(--teal)}
+.st.wn{background:var(--amber-soft)}.st.wn .stv{color:var(--amber)}
+
+/* TABLE ROWS */
+.tr{border-bottom:1px solid var(--border);padding:13px 15px}
+.tr:last-child{border-bottom:none}
+.trm{font-size:10px;font-weight:600;color:var(--ink-soft);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:3px}
+.trv{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:3px}
+.trd{font-size:12.5px;color:var(--ink-mid);line-height:1.6}
+
+/* SNACKS */
+.snk{background:var(--warm);border:1px solid var(--border);border-radius:12px;padding:13px 14px;margin-bottom:10px}
+.snkn{font-weight:600;font-size:14px;color:var(--ink);margin-bottom:5px}
+.snkb{font-size:13px;color:var(--ink-mid);line-height:1.7;margin-bottom:5px}
+.snkm{font-size:11px;color:var(--ink-soft)}
+
+/* MACRO BAR */
+.macro-bar{margin:14px 0 6px}
+.macro-bar-label{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-soft);margin-bottom:5px}
+.macro-bar-track{height:6px;background:var(--border);border-radius:10px;overflow:hidden;display:flex;gap:2px}
+.mb-p{background:#1a6b5a;height:100%;border-radius:10px}
+.mb-c{background:#1d56c4;height:100%;border-radius:10px}
+.mb-f{background:#c17f24;height:100%;border-radius:10px}
+.macro-legend{display:flex;gap:12px;margin-top:6px;flex-wrap:wrap}
+.ml-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--ink-soft)}
+.ml-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* DAY TOGGLE */
+.day-toggle-wrap{display:flex;gap:0;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:14px}
+.day-toggle-btn{flex:1;padding:10px;text-align:center;font-size:12px;font-weight:500;cursor:pointer;background:var(--paper);color:var(--ink-soft);border:none;font-family:var(--sans);transition:all 0.2s}
+.day-toggle-btn.active{background:var(--ink);color:#fff}
+.diet-variant{display:none}
+.diet-variant.active{display:block}
+
+/* WEEK STRIP */
+.week-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:16px}
+.wday{background:var(--paper);padding:12px 4px;text-align:center}
+.wday.gym{background:#1a1a1a}
+.wday.home{background:var(--info-soft)}
+.wday.rest{background:var(--warm)}
+.wd-name{font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:5px}
+.wday.gym .wd-name{color:rgba(255,255,255,0.4)}
+.wday.home .wd-name{color:var(--info)}
+.wd-icon{font-size:17px;margin-bottom:3px}
+.wd-label{font-size:10px;font-weight:600;color:var(--ink);line-height:1.3}
+.wday.gym .wd-label{color:#6BAF85}
+.wday.home .wd-label{color:var(--info)}
+.wday.rest .wd-label{color:var(--ink-soft)}
+
+/* EXERCISE ROWS */
+.ex-row{border-bottom:1px solid var(--border);padding:11px 15px;display:flex;gap:12px;align-items:flex-start}
+.ex-row:last-child{border-bottom:none}
+.ex-n{width:22px;height:22px;border-radius:6px;background:var(--warm);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:11px;font-weight:600;color:var(--ink-soft);flex-shrink:0;margin-top:2px}
+.ex-row.fire .ex-n{background:#1a1a1a;color:#6BAF85}
+.ex-name{font-size:13.5px;font-weight:500;color:var(--ink);margin-bottom:2px}
+.ex-sets{font-size:12px;color:var(--ink-soft)}
+
+/* SECTION LABELS */
+.div{height:1px;background:var(--border);margin:22px 0}
+.slbl{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:7px}
+.stit{font-family:var(--serif);font-size:22px;font-weight:400;line-height:1.2;margin-bottom:13px}
+
+/* FOOTER */
+.foot{background:var(--ink);color:rgba(255,255,255,0.38);padding:26px 20px;font-size:12px;line-height:1.7;margin-top:6px}
+.footn{font-family:var(--serif);font-size:20px;font-style:italic;color:rgba(255,255,255,0.6);margin-bottom:6px}
+
+/* UPDATE BAR */
+.upd-bar{background:var(--warm);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;gap:18px;flex-wrap:wrap;align-items:center;font-size:12px;color:var(--ink-mid)}
+.upd-item{display:flex;flex-direction:column;gap:2px}
+.upd-label{font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft)}
+.upd-val{font-weight:600;font-size:13px;color:var(--ink)}
+.upd-val.good{color:var(--teal)}
+.upd-val.warn{color:var(--amber)}
+
+/* MOBILE */
+@media (max-width: 500px) {
+  .page { padding: 20px 14px 60px; }
+  .sl { font-size: 13px; }
+  .step-title { font-size: 15px; }
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div id="cover">
+  <div class="cover-eyebrow">Weight Loss + Stamina Plan — Beginner</div>
+  <div class="cover-name">Chinmayee<br><em>Das</em></div>
+  <div class="cover-sub">Simple workouts at home, trekking ready in 3 months, sustainable nutrition for life.</div>
+  <div class="cover-pills">
+    <span class="cpill">164.6 cm</span>
+    <span class="cpill">84 kg → 64 kg</span>
+    <span class="cpill">1,600 kcal</span>
+    <span class="cpill">100g Protein</span>
+    <span class="cpill">5 simple exercises/session</span>
+    <span class="cpill">5× week · 30 min</span>
+  </div>
+  <div class="cover-coach">Your Coach</div>
+  <div class="cover-role">Fat Loss · Stamina · Lower Back Safe — June 2025</div>
+</div>
+
+<!-- UPDATE BANNER -->
+<div class="upd-bar">
+  <div class="upd-item"><div class="upd-label">Starting</div><div class="upd-val">84 kg</div></div>
+  <div class="upd-item"><div class="upd-label">Target</div><div class="upd-val good">64 kg</div></div>
+  <div class="upd-item"><div class="upd-label">Timeline</div><div class="upd-val">10–12 weeks strong kickstart</div></div>
+  <div class="upd-item"><div class="upd-label">Blood</div><div class="upd-val good">All normal ✓</div></div>
+</div>
+
+<!-- ═══════════════════ OVERVIEW ═══════════════════ -->
+<div id="overview" class="sec-anchor"></div>
+<div class="ph">
+  <div class="ph-eye">Overview</div>
+  <div class="ph-title">Your plan at a glance.</div>
+</div>
+<div class="cx">
+
+  <div class="al ok"><strong>✓ Blood results look good.</strong> No deficiencies, no thyroid issues, no anemia. Your glucose is normal. This plan is built to keep those numbers healthy while you lose fat and gain strength for trekking.</div>
+
+  <div class="div"></div>
+
+  <div class="slbl">Why this approach</div>
+  <div class="stit">Consistency over intensity.</div>
+
+  <div class="card hi">
+    <div class="ch acc"><div class="ct">You've tried gym before — and it didn't stick.</div></div>
+    <div class="cb">That's okay. It's not about you — it's about the environment. Gym requires willpower. Home workouts + WhatsApp support don't. So we're building this at home, with very simple exercises, 30 minutes a day. That's the difference.</div>
+  </div>
+
+  <div class="card">
+    <div class="ch teal"><div class="ct">Lower back + tailbone pain</div></div>
+    <div class="cb">Every workout avoids heavy loading on your back. No extreme core work. Instead: glute activation (which actually fixes lower back pain), gentle progressions, and mobility work. Your back will feel better as you go, not worse.</div>
+  </div>
+
+  <div class="card">
+    <div class="ch info"><div class="ct">Insulin resistance pattern</div></div>
+    <div class="cb">Your lipid profile shows classic desk-job pattern: low HDL, slightly high LDL, inflammation risk. This plan directly addresses that — low-GI foods, post-meal walks, anti-inflammatory choices. You'll feel more energy as blood sugar stabilizes.</div>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="slbl">The numbers</div>
+  <div class="stit">Sustainable, not aggressive.</div>
+
+  <div class="card">
+    <div class="ch amber"><div class="ct">Calorie & macro targets</div></div>
+    <div>
+      <div class="tr"><div class="trm">Daily target</div><div class="trv">1,600 kcal</div><div class="trd">This is maintenance minus 100 calories. Conservative. You'll lose steadily — ~500g per week = 20kg in 10 months. First 3 months will show visible change if you stick.</div></div>
+      <div class="tr"><div class="trm">Protein</div><div class="trv">100g daily</div><div class="trd">Highest priority. Keeps hunger down, protects muscle on a deficit, stabilises blood sugar, and boosts HDL. Spread across 3 meals.</div></div>
+      <div class="tr"><div class="trm">Carbs</div><div class="trv">185g daily</div><div class="trv">Low-GI only — no white rice, no refined flour. Brown rice, oats, bajra, dal. Prevents blood sugar spikes.</div></div>
+      <div class="tr"><div class="trm">Fat</div><div class="trv">50g daily</div><div class="trv">Omega-3 emphasis (fish, walnuts). Anti-inflammatory. Supports HDL.</div></div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="st acc"><div class="stl">Daily Kcal</div><div class="stv">1,600</div><div class="stu">sustainable deficit</div></div>
+    <div class="st tl"><div class="stl">Protein</div><div class="stv">100g</div><div class="stu">priority nutrient</div></div>
+  </div>
+  <div class="stats">
+    <div class="st"><div class="stl">Carbs</div><div class="stv">185g</div><div class="stu">low-GI only</div></div>
+    <div class="st wn"><div class="stl">Fat</div><div class="stv">50g</div><div class="stu">omega-3 focus</div></div>
+  </div>
+
+  <div class="macro-bar">
+    <div class="macro-bar-label"><span>Macro split — 1,600 kcal</span><span>400 + 740 + 450</span></div>
+    <div class="macro-bar-track">
+      <div class="mb-p" style="width:25%"></div>
+      <div class="mb-c" style="width:46%"></div>
+      <div class="mb-f" style="width:29%"></div>
+    </div>
+    <div class="macro-legend">
+      <div class="ml-item"><div class="ml-dot" style="background:#1a6b5a"></div>Protein 100g · 25%</div>
+      <div class="ml-item"><div class="ml-dot" style="background:#1d56c4"></div>Carbs 185g · 46%</div>
+      <div class="ml-item"><div class="ml-dot" style="background:#c17f24"></div>Fat 50g · 29%</div>
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="slbl">What changes starting now</div>
+
+  <div class="card hi">
+    <div class="ch acc"><div class="ct">1. Post-meal walks (10–15 min)</div></div>
+    <div class="cb">After lunch and dinner, walk slowly around your home or outside. This single habit prevents blood sugar spikes and addresses your low HDL. Non-negotiable.</div>
+  </div>
+
+  <div class="card hi">
+    <div class="ch acc"><div class="ct">2. Oil brush + spray bottle</div></div>
+    <div class="cb">Cooking at home is great — but invisible oil adds hundreds of calories. Brush oil thin on the pan instead of pouring. Use a spray bottle for rotis. Cheapest, highest-impact swap you can make.</div>
+  </div>
+
+  <div class="card hi">
+    <div class="ch acc"><div class="ct">3. Protein at every meal</div></div>
+    <div class="cb">Breakfast: eggs + roti. Lunch: chicken/fish + dal + rice. Dinner: chicken/paneer + sabzi. No meal without protein.</div>
+  </div>
+
+  <div class="card hi">
+    <div class="ch acc"><div class="ct">4. Low-GI carbs only</div></div>
+    <div class="cb">Brown rice 2–3×/week. All other days: rotis (wheat, bajra, jowar, ragi). No white rice, no refined flour, no bread. Your blood sugar will thank you.</div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════ DIET ═══════════════════ -->
+<div id="diet" class="sec-anchor"></div>
+<div class="ph">
+  <div class="ph-eye">Nutrition</div>
+  <div class="ph-title">Your daily meal plan.<br>Home-cooked, always.</div>
+</div>
+<div class="cx">
+
+  <div class="al i"><strong>Total daily: 1,600 kcal · P 100g · C 185g · F 50g.</strong> This is your daily average. Some days will be slightly higher, some lower — that's normal. What matters is the weekly average and consistency.</div>
+
+  <!-- BREAKFAST -->
+  <div class="card">
+    <div class="ch acc"><div class="ct">Breakfast</div><div class="cm">~350 kcal · P 25g · 7:30–8:30am</div></div>
+    <div class="cb">
+      <strong>Option 1 — Boiled eggs + roti (preferred):</strong><br>
+      · 2 whole boiled eggs OR 1 whole + 3 egg whites<br>
+      · 2 wheat rotis<br>
+      · 1 small fruit — apple or banana<br><br>
+      <strong>Option 2 — Oats:</strong><br>
+      · 50g oats (dry measure) cooked in water + 150ml whole milk<br>
+      · 1 tsp jaggery or 1 banana stirred in<br>
+      · Pinch of salt<br><br>
+      <div class="nt ok">Breakfast within 1 hour of waking. This sets your metabolism for the day.</div>
+    </div>
+  </div>
+
+  <!-- MID-MORNING SNACK (optional) -->
+  <div class="card">
+    <div class="ch"><div class="ct">Mid-morning (if hungry)</div><div class="cm">~100 kcal · 10:00–10:30am</div></div>
+    <div class="cb">
+      · 1 medium apple with 1 tsp peanut butter, OR<br>
+      · 1 small bowl Greek curd (100g, unsweetened), OR<br>
+      · Black coffee / green tea (no sugar)
+    </div>
+  </div>
+
+  <!-- LUNCH -->
+  <div class="card">
+    <div class="ch teal"><div class="ct">Lunch</div><div class="cm">~450 kcal · P 30g · 12:30–1:30pm</div></div>
+    <div class="cb">
+      <strong>Always start with salad:</strong> cucumber + tomato + onion + lemon.<br><br>
+      · 2 wheat rotis OR 1 small bowl (150g) brown rice<br>
+      · 150–180g chicken (grilled, boiled, or dry curry) OR 100g fish OR 80g paneer<br>
+      · 1 cup dal (masoor, chana, moong — rotate) OR chickpea curry<br>
+      · 1 bowl sabzi (any vegetable — palak, cauliflower, beans)<br><br>
+      <div class="nt ok">🍋 Always add lemon to dal and sabzi. Increases iron absorption by 3×. Also improves blood lipids.</div>
+    </div>
+  </div>
+
+  <!-- POST-LUNCH WALK -->
+  <div class="card">
+    <div class="ch amber"><div class="ct">Post-lunch walk</div><div class="cm">10–15 min · immediately after eating</div></div>
+    <div class="cb">
+      Slow pace. Around the house or a light outdoor walk. This prevents blood sugar spike and burns extra calories. Don't skip this.
+    </div>
+  </div>
+
+  <!-- EVENING SNACK (optional) -->
+  <div class="card">
+    <div class="ch"><div class="ct">Evening snack (if hungry)</div><div class="cm">~100 kcal · 4:00–5:00pm</div></div>
+    <div class="cb">
+      · Roasted chana (30g), OR<br>
+      · 1 small bowl curd with jeera, OR<br>
+      · Black coffee / green tea
+    </div>
+  </div>
+
+  <!-- DINNER -->
+  <div class="card hi">
+    <div class="ch acc"><div class="ct">Dinner <span class="bx d">Highest protein meal</span></div><div class="cm">~480 kcal · P 35g · 8:00–9:00pm</div></div>
+    <div class="cb">
+      <strong>Always start with salad.</strong><br><br>
+      <strong>Protein (pick one):</strong><br>
+      · 180–200g chicken — grilled or dry sabzi style <span class="bx ok">preferred</span><br>
+      · 150g fish (any type except dry fish)<br>
+      · 100g paneer + 1 whole egg (combined)<br><br>
+      · 2 wheat rotis<br>
+      · 1.5 cups sabzi<br><br>
+      <div class="nt d">🚶 After dinner — 10–15 min slow walk. Blood sugar protocol. Non-negotiable.</div>
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="slbl">Food you love — keep it</div>
+
+  <div class="card">
+    <div class="ch"><div class="ct">Non-vegetarian proteins — approved</div></div>
+    <div class="cb">
+      ✓ Chicken (all cuts) — grilled, boiled, dry curry<br>
+      ✓ Fish (all types except dry fish) — grilled, boiled, curry<br>
+      ✓ Eggs (boiled, fried with oil brush, scrambled)<br>
+      ✓ Paneer (fried in thin oil, curry, bhurji)<br>
+      ✓ Dal and legumes (masoor, chana, moong, rajma)<br>
+      <div class="nt ok">Cook with minimal oil. Use the brush, not the bottle.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch amber"><div class="ct">Foods to avoid</div></div>
+    <div class="cb">
+      ✗ White rice, white bread, refined flour (maida)<br>
+      ✗ Deep fried foods — samosa, pakora, chips, fried fish<br>
+      ✗ Sugary drinks, fruit juices, sweet chai<br>
+      ✗ Biscuits, mithai, ice cream<br>
+      ✗ Processed snacks — instant noodles, packaged namkeen<br>
+      ✗ Red meat<br>
+      ✗ Perval, dry fish
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="slbl">If hunger hits between meals</div>
+  <div class="stit">7 safe, filling snacks.</div>
+
+  <div class="snk"><div class="snkn">1. Roasted chana — 30g</div><div class="snkb">High protein, high fiber. Fills hunger for hours without spiking blood sugar.</div><div class="snkm">~110 kcal · P 7g</div></div>
+  <div class="snk"><div class="snkn">2. Apple + peanut butter — 1 apple + 1 tsp PB</div><div class="snkb">Fiber + protein + healthy fat. Satisfying.</div><div class="snkm">~120 kcal · P 4g</div></div>
+  <div class="snk"><div class="snkn">3. Plain curd — 150g (unsweetened)</div><div class="snkb">Cooling, filling, probiotic. Add jeera and black salt.</div><div class="snkm">~90 kcal · P 8g</div></div>
+  <div class="snk"><div class="snkn">4. Cucumber — unlimited</div><div class="snkb">Slice, add black salt and lemon. Zero guilt, zero calories.</div><div class="snkm">~15 kcal per cup</div></div>
+  <div class="snk"><div class="snkn">5. Boiled eggs — 1 whole + 2 egg whites</div><div class="snkb">Portable, filling, pure protein.</div><div class="snkm">~90 kcal · P 12g</div></div>
+  <div class="snk"><div class="snkn">6. Black coffee or green tea (no sugar)</div><div class="snkb">Appetite suppressant. Drink when cravings hit.</div><div class="snkm">~0 kcal</div></div>
+  <div class="snk"><div class="snkn">7. Watermelon — 1 medium bowl (200g)</div><div class="snkb">Summer essential, hydrating, naturally sweet, low calorie.</div><div class="snkm">~50 kcal</div></div>
+
+</div>
+
+<!-- ═══════════════════ WORKOUT ═══════════════════ -->
+<div id="workout" class="sec-anchor"></div>
+<div class="ph">
+  <div class="ph-eye">Training</div>
+  <div class="ph-title">Your home workouts.<br>5 exercises, 30 minutes, 5 days a week.</div>
+</div>
+<div class="cx">
+
+  <div class="slbl">Weekly structure</div>
+  <div class="week-strip">
+    <div class="wday home"><div class="wd-name">Mon</div><div class="wd-icon">🦵</div><div class="wd-label">Lower Body</div></div>
+    <div class="wday home"><div class="wd-name">Tue</div><div class="wd-icon">💪</div><div class="wd-label">Upper Body</div></div>
+    <div class="wday rest"><div class="wd-name">Wed</div><div class="wd-icon">🚶</div><div class="wd-label">Rest Day</div></div>
+    <div class="wday home"><div class="wd-name">Thu</div><div class="wd-icon">🔥</div><div class="wd-label">Full Body</div></div>
+    <div class="wday home"><div class="wd-name">Fri</div><div class="wd-icon">🏃</div><div class="wd-label">Cardio</div></div>
+    <div class="wday rest"><div class="wd-name">Sat</div><div class="wd-icon">🧘</div><div class="wd-label">Active Rest</div></div>
+    <div class="wday rest"><div class="wd-name">Sun</div><div class="wd-icon">😴</div><div class="wd-label">Rest</div></div>
+  </div>
+  <div class="nt i">Flexibility: Can swap Mon/Tue, or Thu/Fri if life gets in the way. What matters is 5 days done, not the exact day.</div>
+
+  <div class="div"></div>
+
+  <div class="slbl">All workouts follow this format</div>
+  <div class="card">
+    <div class="ch info"><div class="ct">Warm-up · 3–5 min</div></div>
+    <div class="cb">Arm circles, leg swings, slow walking or light jogging in place. Just to get blood flowing.</div>
+  </div>
+  <div class="card">
+    <div class="ch dark"><div class="ct">Main workout · 5 exercises · 20 min</div></div>
+    <div class="cb">Do each exercise back-to-back with minimal rest (30–45 seconds between). No equipment needed — just your body.</div>
+  </div>
+  <div class="card">
+    <div class="ch teal"><div class="ct">Cool-down & stretch · 5 min</div></div>
+    <div class="cb">Gentle stretches for muscles you just worked. Hold each 20–30 seconds.</div>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="slbl">Monday · Lower Body</div>
+  <div class="stit">Glutes, legs, lower back strength.</div>
+
+  <div class="card">
+    <div class="ch dark"><div class="ct">Warm-up</div></div>
+    <div class="cb">Arm circles 20 sec · Leg swings 20 sec · Walk in place 1 min</div>
+  </div>
+
+  <div class="card">
+    <div class="ch dark">
+      <div class="ct">Main Workout · Do all 5 exercises back-to-back, 2–3 rounds</div>
+    </div>
+    <div>
+      <div class="ex-row fire">
+        <div class="ex-n">1</div>
+        <div>
+          <div class="ex-name">Glute Bridges</div>
+          <div class="ex-sets">12 reps × 2–3 rounds · Lie on back, knees bent, push hips up. Squeeze glutes at top. Lower slowly.</div>
+        </div>
+      </div>
+      <div class="ex-row">
+        <div class="ex-n">2</div>
+        <div>
+          <div class="ex-name">Bodyweight Squats</div>
+          <div class="ex-sets">12 reps × 2–3 rounds · Feet shoulder-width apart. Lower down like sitting in a chair. Keep chest up.</div>
+        </div>
+      </div>
+      <div class="ex-row">
+        <div class="ex-n">3</div>
+        <div>
+          <div class="ex-name">Walking Lunges</div>
+          <div class="ex-sets">10 steps each leg × 2–3 rounds · Step forward, lower back knee toward ground. Push back to standing. Repeat.</div>
+        </div>
+      </div>
+      <div class="ex-row">
+        <div class="ex-n">4</div>
+        <div>
+          <div class="ex-name">Calf Raises</div>
+          <div class="ex-sets">15 reps × 2–3 rounds · Stand, raise up on tiptoes. Lower. Repeat. Can hold onto a wall for balance.</div>
+        </div>
+      </div>
+      <div class="ex-row">
+        <div class="ex-n">5</div>
+        <div>
+          <div class="ex-name">Leg Raises (lying)</div>
+          <div class="ex-sets">10 reps × 2–3 rounds · Lie on back, legs straight. Raise legs to 45°, lower without touching ground. Gentle on lower back.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch teal"><div class="ct">Cool-down · 5 min</div></div>
+    <div class="cb">
+      Quad stretch (30 sec each leg) · Hamstring stretch (30 sec each) · Glute stretch (30 sec each) · Child's pose (45 sec)
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="slbl">Tuesday · Upper Body</div>
+  <div class="stit">Arms, chest, shoulders, back.</div>
+
+  <div class="card">
+    <div class="ch dark"><div class="ct">Warm-up</div></div>
+    <div class="cb">Arm circles 30 sec each direction · Shoulder rolls · Wall slides 1 min</div>
+  </div>
+
+  <div class="card">
+    <div class="ch dark">
+      <div class="ct">Main Workout · Do all 5 exercises back-to-back, 2–3 rounds</div>
+    </div>
+    <div>
+      <div class="ex-row fire">
+        <div class="ex-n">1</div>
+        <div>
+          <div class="ex-name">Wall Push-ups or Incline Push-ups</div>
+          <div class="ex-sets">10 reps × 2–3 rounds · Hands on wall (easier) or on a table/couch (harder). Bend elbows, push back. Start easy, progress later.</div>
+        </div>
+      </div>
+      <div class="ex-row">
+        <div class="ex-n">2</div>
+        <div>
+          <div class="ex-name">Tricep Dips</div>
+          <div class="ex-sets">10 reps × 2–3 rounds · Use a chair or couch. Hands behind, lower body down, push back up.</div>
+        </div>
+      </div>
+      <div class="ex-row">
+        <div class="ex-n">3</div>
+        <div>
+          <div class="ex-name">Plank (modified)</div>
+          <div class="ex-sets">20–30 sec hold × 2–3 rounds · On knees (easier) or full plank (harder). Keep back straight, don't sag hips.</div>
+        </div>
+      </div>
+      <div class="ex-row">
+        <div class="ex-n">4</div>
+        <div>
+          <div class="ex-name">Arm Circles</div>
+          <div class="ex-sets">20 circles forward + 20 backward × 2–3 rounds · Both arms, controlled. Feel the shoulder burn.</div>
+        </div>
+      </div>
+      <div class="ex-row">
+        <div class="ex-n">5</div>
+        <div>
+          <div class="ex-name">Superman Hold</div>
+          <div class="ex-sets">10–15 sec hold × 2–3 rounds · Lie face down, lift arms and legs slightly. Hold. Lower. Strengthens lower back safely.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch teal"><div class="ct">Cool-down · 5 min</div></div>
+    <div class="cb">
+      Chest stretch (30 sec) · Shoulder stretch (30 sec each) · Tricep stretch (30 sec each) · Child's pose (45 sec)
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="slbl">Thursday · Full Body</div>
+  <div class="stit">Simple circuit — everything in one session.</div>
+
+  <div class="card">
+    <div class="ch dark"><div class="ct">Warm-up</div></div>
+    <div class="cb">Jumping jacks 20 sec · High knees 20 sec · Arm circles 20 sec</div>
+  </div>
+
+  <div class="card">
+    <div class="ch dark">
+      <div class="ct">Main Workout · Do all 5 exercises back-to-back, 2 rounds</div>
+    </div>
+    <div>
+      <div class="ex-row fire">
+        <div class="ex-n">1</div>
+        <div>
+          <div class="ex-name">Burpees (simplified)</div>
+          <div class="ex-sets">8 reps × 2 rounds · Step back into plank (don't jump), step feet back in, stand up. No jump if it's hard — step instead.</div>
+        </div>
+      </div>
+      <div class="ex-row">
+        <div class="ex-n">2</div>
+        <div>
+          <div class="ex-name">Mountain Climbers</div>
+          <div class="ex-sets">20 reps (each leg) × 2 rounds · Plank position, bring knee to chest alternately. Steady pace.</div>
+        </div>
+      </div>
+      <div class="ex-row">
+        <div class="ex-n">3</div>
+        <div>
+          <div class="ex-name">Jump Squats or Regular Squats</div>
+          <div class="ex-sets">12 reps × 2 rounds · Jump if you can (builds cardio + power). Or regular squats if knees feel sensitive.</div>
+        </div>
+      </div>
+      <div class="ex-row">
+        <div class="ex-n">4</div>
+        <div>
+          <div class="ex-name">Push-ups (wall or incline)</div>
+          <div class="ex-sets">8–10 reps × 2 rounds · Same as Tuesday. Do your best version.</div>
+        </div>
+      </div>
+      <div class="ex-row">
+        <div class="ex-n">5</div>
+        <div>
+          <div class="ex-name">Glute Bridges</div>
+          <div class="ex-sets">15 reps × 2 rounds · Finish strong. Activate glutes.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch teal"><div class="ct">Cool-down · 5 min</div></div>
+    <div class="cb">
+      Walk slowly 1 min · Full body stretch (legs, arms, chest, back) — 4 min
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="slbl">Friday · Cardio</div>
+  <div class="stit">Running or outdoor walking — your choice.</div>
+
+  <div class="card">
+    <div class="ch amber"><div class="ct">Pick one</div></div>
+    <div class="cb">
+      <strong>Option A — Running/Jogging:</strong> 25–30 min at a pace where you can talk but not sing. Start slow, build week on week.<br><br>
+      <strong>Option B — Brisk Walking:</strong> 30–40 min at a steady pace. Same cardio benefit, easier on joints.<br><br>
+      <strong>Option C — Mixed:</strong> 5 min walk warm-up → 15 min jog/run → 5 min walk cool-down<br><br>
+      <div class="nt ok">🚶 This can be outdoors or on a treadmill. Trekking readiness comes from consistent cardio. This day is critical.</div>
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="slbl">Rest days & active recovery</div>
+
+  <div class="card">
+    <div class="ch"><div class="ct">Wednesday · Rest Day</div></div>
+    <div class="cb">
+      Full rest or very light — gentle yoga, stretching, walking 30 min. Your body recovers here. Don't skip recovery thinking "more is better."
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch"><div class="ct">Saturday · Active Rest</div></div>
+    <div class="cb">
+      Light walk, yoga, or mobility work. Nothing intense. This is recovery day, not training day.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch"><div class="ct">Sunday · Complete Rest</div></div>
+    <div class="cb">
+      Off. No workouts. Focus on sleep, meals, hydration. Mental break matters.
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="slbl">Progression — how to get harder</div>
+
+  <div class="card">
+    <div class="ch info"><div class="ct">Week 1–2: Learn the movements</div></div>
+    <div class="cb">
+      Focus on form, not speed. Do 2 rounds. Feel the muscles. No rush.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch info"><div class="ct">Week 3–4: Increase reps</div></div>
+    <div class="cb">
+      Same exercises, more reps. 12 → 14 → 15. Or add a 3rd round.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch info"><div class="ct">Week 5+: Harder versions</div></div>
+    <div class="cb">
+      Wall push-ups → Incline push-ups → Floor push-ups (if ready). Regular squats → Jump squats. Plank on knees → Full plank. Progress at your pace, no rush.
+    </div>
+  </div>
+
+  <div class="al ok"><strong>Back pain note:</strong> These exercises are designed to strengthen glutes and improve posture — which actually fixes lower back pain. If any exercise causes sharp pain (not just muscle fatigue), skip it and tell me in the check-in.</div>
+
+</div>
+
+<!-- ═══════════════════ NOTES (Coach-facing) ═══════════════════ -->
+<div id="notes" class="sec-anchor" style="display:none"></div>
+<div class="ph" style="display:none">
+  <div class="ph-eye">Notes</div>
+  <div class="ph-title">For your coach.</div>
+</div>
+<div class="cx" style="display:none">
+
+  <div class="card hi">
+    <div class="ch acc"><div class="ct">Key concern: Consistency history</div></div>
+    <div class="cb">
+      Chinmayee has tried gym before (2–3 months max) and hasn't stuck. This isn't a lack of willpower — it's friction. Gym requires commute, scheduling, environment change. Home removes that friction entirely. This plan is designed to make showing up easier than not showing up.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch"><div class="ct">Red flag question in intake: "What if this also doesn't work?"</div></div>
+    <div class="cb">
+      Implies past failures and doubt. Address this directly in first check-in. Reframe not as "you'll finally succeed" but as "this time, the system removes the barriers." Build confidence through small wins (first 2 weeks, first month). Celebrate completion, not perfection.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch teal"><div class="ct">Back pain — lower back + tailbone</div></div>
+    <div class="cb">
+      Likely postural (desk job + low movement). Glute weakness is the root. Glute bridges + walking lunges directly address this. Pain should improve, not worsen, over 4–6 weeks. If it gets worse, adjust to pain-free range or skip that exercise and escalate in next check-in.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch info"><div class="ct">Blood lipids — low HDL pattern</div></div>
+    <div class="cb">
+      HDL 32 (low), LDL 113 (slightly high), RDW 15.50 (elevated). Classic insulin resistance + inflammation pattern. Nutrition priorities: (1) Post-meal walks (non-negotiable for blood sugar), (2) Low-GI carbs only, (3) Omega-3 emphasis, (4) Hidden oil control. Repeat lipid panel in 12 weeks to track HDL improvement.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch"><div class="ct">Sleep + stress</div></div>
+    <div class="cb">
+      5–6 hrs sleep due to insomnia/restlessness (not medical). Moderate stress at desk job. This likely contributes to cortisol elevation and insulin resistance. Mention sleep as a coaching priority in first check-in (no screens 30 min before bed, consistent wake time, etc.). Poor sleep will sabotage the plan.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch dark"><div class="ct">Check-in messaging</div></div>
+    <div class="cb">
+      Warm, not transactional. Acknowledge effort, not just results. First 2 weeks: "How are the workouts feeling? Any exercises too hard or easy?" Week 3: "You're building momentum. Let's see what tweaks help." Normalize struggles ("Everyone finds this hard at first"). Build relationship first, data second.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch dark"><div class="ct">WhatsApp tone template</div></div>
+    <div class="cb">
+      💠 Morning message (Mon/Wed/Fri before workout): "Hey Chinmayee! Today's [workout name]. 5 simple exercises, 30 min. You've got this. Send me a pic after if you can 😊"<br><br>
+      💠 Check-in response: Acknowledge effort, ask one follow-up (how did X exercise feel?), give one micro-tip for next session.<br><br>
+      💠 Struggle acknowledge: "Skipped today? No stress. Life happens. Tomorrow is a fresh start. What got in the way — let's plan around it."
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch dark"><div class="ct">3-month milestones</div></div>
+    <div class="cb">
+      Week 4: "You've done 12 sessions. Most people quit by week 2. You didn't. That's the win."<br>
+      Week 8: "Look at the difference in how these workouts feel. Remember week 1?"<br>
+      Week 12: Repeat blood test for lipids. Track weight. Assess trekking fitness (test with a moderate hike). Reset goals for 3–6 month phase.
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="foot">
+  <div class="footn">Chinmayee Das</div>
+  Weight Loss · Stamina · Lower Back Safe · Anti-inflammatory<br>
+  Plan issued — June 2025 · Review in 4 weeks, repeat blood test in 12 weeks<br>
+  Female · 32 yrs · 84 kg → 64 kg · 164.6 cm · Bhubaneswar, Odisha · Home workouts · 5 days/week<br><br>
+  <span style="font-size:11px;color:rgba(255,255,255,0.18)">This plan is for fitness purposes only and does not replace medical advice. Please consult a physician regarding your back pain if it worsens during training.</span>
+</div>
+
+<nav class="bnav">
+  <a href="#overview" onclick="hl(this)"><span class="bnav-icon">📊</span>Overview</a>
+  <a href="#diet" onclick="hl(this)"><span class="bnav-icon">🍽</span>Diet</a>
+  <a href="#workout" onclick="hl(this)"><span class="bnav-icon">🏋️</span>Workout</a>
+</nav>
+
+<script>
+function hl(el) {
+  document.querySelectorAll('.bnav a').forEach(a => a.style.color = '');
+  el.style.color = '#fff';
+  setTimeout(() => { el.style.color = ''; }, 800);
+}
+const anchors = ['overview','diet','workout'];
+const navLinks = document.querySelectorAll('.bnav a');
+function updateNav() {
+  let c = anchors[0];
+  anchors.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 80) c = id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + c ? '#ffffff' : '';
+  });
+}
+window.addEventListener('scroll', updateNav, { passive: true });
+updateNav();
+</script>
+</body>
+</html>
